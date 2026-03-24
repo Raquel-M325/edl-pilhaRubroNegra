@@ -35,7 +35,12 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             throw new PilhaVaziaExcecao("A pilha vermelha está vazia");
         }
 
+        if (size() <= capacidade / 3){
+            shrink();
+        }
+
         return arr[topRubro--]; //está crescente, para diminuir, terá que ir para esquerda/negativa
+
     }
 
     public Object popN() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array negro
@@ -43,12 +48,21 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             throw new PilhaVaziaExcecao("A pilha preta está vazia");
 
         }
-        return arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo, pega primeiro o elemento e depois tira naquela direção
+
+        arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo, pega primeiro o elemento e depois tira naquela direção
+
+
+        if (size() <= capacidade / 3){ //pouca coisa no array sendo usada, então diminua
+            shrink();
+        }
+
     }
 
     public void grow() {
         int novo_capacidade = capacidade *= 2;
         Object novo_arr[] = new Object[capacidade];
+
+        //com aumento da capacidade, irá funcionar agora o push, usando a nova lista
     
         for (int i = 0; i <= topRubro; i++){
             novo_arr[i] = arr[i];
@@ -68,7 +82,24 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
     }
 
     public void shrink() { // Diminui o array geral pela metade, mantendo o array negro mais a direita
-        
+        int reducao = capacidade / 2; //metade da lista
+        Object novo_arr[] = new Object[reducao];
+
+        for (int i = 0; i <= topRubro; i++){
+            novo_arr[i] = arr[i];
+        }
+
+        int tamanho_arr_P = capacidade - topNegro;
+        int novo_top_P = reducao - tamanho_arr_P;
+
+        for (int i = 0; i <= tamanho_arr_P; i++){
+            novo_arr[novo_top_P + i] = arr[novo_top_P + i];
+        }
+
+        arr = novo_arr;
+        capacidade = reducao;
+        topNegro = novo_top_P;
+
     }
 
     public Object topR() throws PilhaVaziaExcecao{ // Retorna o ultimo elemento do array rubro
