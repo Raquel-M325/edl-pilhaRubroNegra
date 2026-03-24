@@ -37,7 +37,7 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
         Object popR_retirado = arr[topRubro--]; //está crescente, para diminuir, terá que ir para esquerda/negativa
         
-        if (size() <= capacidade / 3){
+        if (size() < capacidade / 3){
             shrink();
         }
 
@@ -52,7 +52,7 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
         Object popN_retirado = arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo, pega primeiro o elemento e depois tira naquela direção
 
-        if (size() <= capacidade / 3){ //pouca coisa no array sendo usada, então diminua
+        if (size() < capacidade / 3){ //pouca coisa no array sendo usada, então diminua
             shrink();
         }
 
@@ -73,8 +73,8 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
         int tamanho_arr_P = capacidade - topNegro; //para saber o tamanho exato da lista preta, usarei de forma temporária
         int novo_top_P = novo_capacidade - tamanho_arr_P; //para inverter de forma crescente! sendo um novo topNegro
 
-        for (int i = 0; i <= tamanho_arr_P; i++){
-            novo_arr[novo_top_P + i] = arr[novo_top_P + i];
+        for (int i = 0; i < tamanho_arr_P; i++){
+            novo_arr[novo_top_P + i] = arr[topNegro + i]; //na lista antiga tem que estar com top antigo, da mesma forma a lista nova tem que estar com top novo!
         }
 
         arr = novo_arr;
@@ -85,6 +85,11 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
     public void shrink() { // Diminui o array geral pela metade, mantendo o array negro mais a direita
         int reducao = capacidade / 2; //metade da lista
+
+        if (reducao < size()){ //se a lista reduzir mais do que a quantidade de elemento, pode gerar erro, a redução tem que ser menor do que os elementos usados na lista
+            return;
+        }
+
         Object novo_arr[] = new Object[reducao];
 
         for (int i = 0; i <= topRubro; i++){
@@ -94,8 +99,8 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
         int tamanho_arr_P = capacidade - topNegro;
         int novo_top_P = reducao - tamanho_arr_P;
 
-        for (int i = 0; i <= tamanho_arr_P; i++){
-            novo_arr[novo_top_P + i] = arr[novo_top_P + i];
+        for (int i = 0; i < tamanho_arr_P; i++){
+            novo_arr[novo_top_P + i] = arr[topNegro + i];
         }
 
         arr = novo_arr;
