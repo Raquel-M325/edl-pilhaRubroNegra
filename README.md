@@ -20,8 +20,8 @@ O objetivo é otimizar o uso de memória utilizando um único array compartilhad
    git clone <url-do-seu-fork>
    ```
 3. Abra o projeto na sua IDE de preferência (IntelliJ, Eclipse, VS Code)
-4. Localize a classe `PilhaArrayRubroNegra`
-5. Implemente os métodos indicados
+4. Localize a classe `PilhaArrayRubroNegra`, na pasta `src/main/java/`
+5. Implemente :D
 
 ---
 
@@ -38,85 +38,16 @@ A classe já possui os seguintes atributos:
 
 ## Estratégia de implementação (ordem recomendada)
 
-Siga esta ordem para evitar erros e facilitar testes:
+Implente as funções mais simples primeiro.
 
-### 1. Operações básicas de inserção (push)
-
-Implemente primeiro:
-
-* `pushR(Object o)`
-* `pushN(Object o)`
-
-Regras:
-
-* Antes de inserir, verifique se há espaço
-* Caso não haja espaço, chame `grow()`
-
----
-
-### 2. Operações básicas de remoção (pop)
-
-Implemente:
-
-* `popR()`
-* `popN()`
-
-Regras:
-
-* Verifique se a pilha correspondente está vazia
-* Lance `PilhaVaziaExcecao` se necessário
-* Após remover, considere chamar `shirink()` se o uso estiver baixo
-
----
-
-### 3. Consultas ao topo (top)
-
-Implemente:
-
-* `topR()`
 * `topN()`
-
-Regras:
-
-* Apenas retornam o elemento sem remover
-* Devem lançar exceção se a pilha estiver vazia
-
----
-
-### 4. Métodos auxiliares
-
-* `isEmpty()`
-    * Retorna `true` se ambas as pilhas estiverem vazias
-
-
+* `topR()`
 * `size()`
-    * Retorna a quantidade de elementos de ambas as pilhas
+* `isEmpty()`
 
----
+Eles são essenciais para os testes. Depois implemente as funções `push`,`pop`, `grow` e `shrink`.
 
-### 5. Redimensionamento
-
-#### `grow()`
-
-* Dobra a capacidade do array
-* Copia:
-
-  * Pilha rubro mantém posição inicial
-  * Pilha negro deve continuar alinhada à direita
-
-Passos:
-
-1. Criar novo array com o dobro do tamanho
-2. Copiar elementos da pilha rubra
-3. Copiar elementos da pilha negra para o final do novo array
-4. Atualizar `topNegro`
-
----
-
-#### `shirink()`
-
-* Reduz pela metade se o uso for baixo (ex: 1/3 de uso)
-* Mesma lógica de cópia do `grow()`
+Quando tiver algo para enviar para o repositório principal, faça um __Pull Request__ em [edl-pilhaRubroNegra](https://github.com/anabs-escolar/edl-pilhaRubroNegra)
 
 ---
 
@@ -131,10 +62,24 @@ Passos:
 
 ## Executando Testes
 
-Execute:
+| Comando             | Uso              |
+| ------------------- | ---------------- |
+| `mvn test`          | roda todos testes      |
+| `mvn clean test`    | limpa compilação antiga e compila novamente    |
+| `mvn install`       | build completo   |
+| `mvn -Dtest=Classe`  | teste específico |
+| `-X` / `-e`         | debug            |
 
+Exemplo de uso:
+
+- Todos os testes
 ```bash
 mvn test
+```
+
+- Rodar teste específico
+```bash
+mvn test -Dtest=PushNTest
 ```
 
 ---
