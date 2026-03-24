@@ -2,7 +2,7 @@
   "name": "Java 11 Pilha RN",
   "image": "mcr.microsoft.com/devcontainers/java:1-11-bullseye",
   "features": {
-    "ghcr.io/devcontainers/features/maven:1": {}
+    "ghcr.io/devcontainers/features/maven-sdkman:2": {}
   },
   "customizations": {
     "vscode": {
