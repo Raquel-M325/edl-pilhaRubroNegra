@@ -6,67 +6,50 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
     private int topNegro;
 
     // Construtor
-    public PilhaArrayRN(int capacidade){
+    public PilhaArrayRubroNegra(int capacidade){
         this.capacidade = capacidade;
         topRubro = -1;
         topNegro = capacidade;
         arr = new Object[capacidade];
     }
+    // Métodos
 
-    public void pushR(Object o){
-        if (topRubro +1 == topNegro){
-            grow();
-        }
-        arr[++topRubro] = o;
+    public void pushR(Object o){ // Adiciona um elemento no final do array rubro
+        
     }
-    public void pushN(Object o){
-        if (topRubro+1 == topNegro){
-            grow();
-        }
-        arr[--topNegro] = o;
+
+    public void pushN(Object o){ // Adiciona um elemento no final do array negro
+        
     }
 
     public Object popR() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array rubro
 
-        return r;
+        return null;
     }
 
     public Object popN() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array negro
 
-        return n;
+        return null;
     }
 
     public void grow() {
-        int n_cap = capacidade*2;
-        Object n_arr[] = new Object[n_cap];
-
-        for(int i=0; i <= topRubro; i++)
-            n_arr[i] = arr[i];
         
-        int tamNegro = capacidade - topNegro;
-        int n_topNegro = n_cap - tamNegro;
-
-        for(int i=0; i < tamNegro; i++)
-            n_arr[n_topNegro + i] = arr[topNegro + i];
-
-        topNegro = n_topNegro;
-        capacidade = n_cap;
-        arr = n_arr;
     }
 
-    public void shirink() { // Diminui o array geral pela metade, mantendo o array negro mais a direita
+    public void shrink() { // Diminui o array geral pela metade, mantendo o array negro mais a direita
 
     }
 
     public Object topR() throws PilhaVaziaExcecao{ // Retorna o ultimo elemento do array rubro
-
-        return r;
+    
+        return null;
     }
     
     public Object topN() throws PilhaVaziaExcecao{ // Retorna o ultimo elemento do array negro
 
-        return n;
+        return null;
     }
+
     public boolean isEmpty(){ // Retorna `true` se o array geral está vazio, caso contrário `false`
 
         return true;
@@ -74,6 +57,6 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
     public int size(){ // Retorna a quantidade de elementos do array geral
 
-        return size;
+        return 0;
     }
 }
