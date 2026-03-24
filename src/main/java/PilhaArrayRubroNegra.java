@@ -8,9 +8,9 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
     // Construtor
     public PilhaArrayRubroNegra(int capacidade){
         this.capacidade = capacidade;
-        topRubro = -1;
-        topNegro = capacidade;
-        arr = new Object[capacidade];
+        topRubro = -1; //indice que está no começo, só que vazio
+        topNegro = capacidade; //indice que está no final da lista
+        arr = new Object[capacidade]; //lista
     }
     // Métodos
 
@@ -41,22 +41,31 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
     }
 
     public Object topR() throws PilhaVaziaExcecao{ // Retorna o ultimo elemento do array rubro
-    
-        return null;
+        if (isEmpty() == true){
+            throw new PilhaVaziaExcecao("A pilha vermelha está vazia");
+        }
+       
+        return arr[topRubro]; //indica o indice da lista
+
     }
     
     public Object topN() throws PilhaVaziaExcecao{ // Retorna o ultimo elemento do array negro
-
-        return null;
+        if (isEmpty() == true){
+            throw new PilhaVaziaExcecao("A pilha preta está vazia");
+        }
+        
+        return arr[topNegro]; //não importa se esteja invertido, só quero saber o indice da lista
     }
 
     public boolean isEmpty(){ // Retorna `true` se o array geral está vazio, caso contrário `false`
+        if (topRubro == -1 && topNegro == capacidade){
+            return true;
+        } 
 
-        return true;
+        return false;
     }
 
     public int size(){ // Retorna a quantidade de elementos do array geral
-
-        return 0;
+        return (topRubro + 1) + (capacidade - topNegro);
     }
 }
