@@ -35,12 +35,13 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             throw new PilhaVaziaExcecao("A pilha vermelha está vazia");
         }
 
+        Object popR_retirado = arr[topRubro--]; //está crescente, para diminuir, terá que ir para esquerda/negativa
+        
         if (size() <= capacidade / 3){
             shrink();
         }
 
-        return arr[topRubro--]; //está crescente, para diminuir, terá que ir para esquerda/negativa
-
+        return popR_retirado;
     }
 
     public Object popN() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array negro
@@ -49,18 +50,19 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
         }
 
-        arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo, pega primeiro o elemento e depois tira naquela direção
-
+        Object popN_retirado = arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo, pega primeiro o elemento e depois tira naquela direção
 
         if (size() <= capacidade / 3){ //pouca coisa no array sendo usada, então diminua
             shrink();
         }
 
+        return popN_retirado;
+
     }
 
     public void grow() {
-        int novo_capacidade = capacidade *= 2;
-        Object novo_arr[] = new Object[capacidade];
+        int novo_capacidade = capacidade * 2;
+        Object novo_arr[] = new Object[novo_capacidade];
 
         //com aumento da capacidade, irá funcionar agora o push, usando a nova lista
     
