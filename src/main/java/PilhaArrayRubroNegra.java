@@ -15,21 +15,31 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
     // Métodos
 
     public void pushR(Object o){ // Adiciona um elemento no final do array rubro
-        
+        if (topR()){
+            grow();
+        }
     }
 
     public void pushN(Object o){ // Adiciona um elemento no final do array negro
-        
+        if (topN()){
+            grow();
+        }
     }
 
     public Object popR() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array rubro
+        if (isEmpty()){
+            throw new PilhaVaziaExcecao("A pilha vermelha está vazia");
+        }
 
-        return null;
+        return arr[topRubro--]; //está crescente, para diminuir, terá que ir para esquerda/negativa
     }
 
     public Object popN() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array negro
+        if (isEmpty()){
+            throw new PilhaVaziaExcecao("A pilha preta está vazia");
 
-        return null;
+        }
+        return arr[topNegro++]; //já que está indo ao contrário, então para retirar precisa ir para direita/positivo
     }
 
     public void grow() {
