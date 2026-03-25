@@ -19,7 +19,8 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             grow();
         }
 
-        Object pushR_acrescentado = arr[++topRubro] = o; //"o" é o valor, vai continuar crescendo
+        arr[++topRubro] = o //preciso analisar sobre isso e testar se está tudo certo
+        Object pushR_acrescentado = arr[++topRubro]; //"o" é o valor, vai continuar crescendo
 
         if (size() < capacidade / 3){
             shrink();
@@ -33,7 +34,8 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             grow();
         } 
 
-        Object pushN_acrescentado = arr[--topNegro] = o; //cresce de forma invertida, esse sinal primeiro faz que cresça e depois o indice do elemento colocado
+        arr[--topNegro] = o //preciso analisar sobre isso e testar se está tudo certo
+        Object pushN_acrescentado = arr[--topNegro]; //cresce de forma invertida, esse sinal primeiro faz que cresça e depois o indice do elemento colocado
 
         if (size() < capacidade / 3){
             shrink();
