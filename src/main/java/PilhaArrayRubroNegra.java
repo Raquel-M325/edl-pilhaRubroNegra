@@ -21,7 +21,7 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
 
         Object pushR_acrescentado = arr[++topRubro] = o; //"o" é o valor, vai continuar crescendo
 
-        if(size() < capacidade / 3){
+        if (size() < capacidade / 3){
             shrink();
         }
 
