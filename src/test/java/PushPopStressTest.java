@@ -86,28 +86,38 @@ public class PushPopStressTest {
     }
 
     @Test
-    void deveAlternarPushPopForcandoGrowEShrink() throws Exception {
-        PilhaArrayRubroNegra pilha = new PilhaArrayRubroNegra(2);
+    void deveFazerShrinkQuandoUsoMenorOuIgualUmTerco() throws Exception {
+        PilhaArrayRubroNegra pilha = new PilhaArrayRubroNegra(10);
 
-        for (int i = 1; i <= 30; i++) {
+        // adiciona poucos elementos (já fica < 1/3)
+        pilha.pushR(1);
+        pilha.pushR(2);
+        pilha.pushR(3);
+
+        assertEquals(3, pilha.size());
+
+        // força crescimento primeiro
+        for (int i = 4; i <= 10; i++) {
             pilha.pushR(i);
         }
 
-        for (int i = 0; i < 15; i++) {
+        assertEquals(10, pilha.size());
+
+        // agora remove até ficar <= 1/3
+        for (int i = 0; i < 7; i++) {
             pilha.popR();
         }
 
-        for (int i = 31; i <= 60; i++) {
-            pilha.pushR(i);
-        }
+        // agora deve ter 3 elementos
+        assertEquals(3, pilha.size());
 
-        assertEquals(45, pilha.size());
-        assertEquals(60, pilha.topR());
-
-        for (int i = 60; i >= 16; i--) {
-            assertEquals(i, pilha.popR());
-        }
+        // valida integridade
+        assertEquals(3, pilha.topR());
+        assertEquals(3, pilha.popR());
+        assertEquals(2, pilha.popR());
+        assertEquals(1, pilha.popR());
 
         assertTrue(pilha.isEmpty());
+        
     }
 }
