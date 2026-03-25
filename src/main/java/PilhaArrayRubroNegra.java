@@ -19,14 +19,13 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             grow();
         }
 
-        arr[++topRubro] = o //preciso analisar sobre isso e testar se está tudo certo
-        Object pushR_acrescentado = arr[++topRubro]; //"o" é o valor, vai continuar crescendo
+        Object arr[++topRubro] = o  //"o" é o valor, vai continuar crescendo
 
         if (size() < capacidade / 3){
             shrink();
         }
 
-        return pushR_acrescentado;
+        return arr[++topRubro]; //precisa analisar
     }
 
     public void pushN(Object o){ // Adiciona um elemento no final do array negro
@@ -34,14 +33,13 @@ public class PilhaArrayRubroNegra implements PilhaRubroNegra {
             grow();
         } 
 
-        arr[--topNegro] = o //preciso analisar sobre isso e testar se está tudo certo
-        Object pushN_acrescentado = arr[--topNegro]; //cresce de forma invertida, esse sinal primeiro faz que cresça e depois o indice do elemento colocado
+        Object arr[--topNegro] = o //cresce de forma invertida, esse sinal primeiro faz que cresça e depois o indice do elemento colocado
 
         if (size() < capacidade / 3){
             shrink();
         }
 
-        return pushN_acrescentado;
+        return arr[--topNegro]; //precisa analisar
     }
 
     public Object popR() throws PilhaVaziaExcecao{ // Remove e retorna o ultimo elemento do array rubro
